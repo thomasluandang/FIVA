@@ -1,0 +1,242 @@
+{
+	"actionName": "changeGoal",
+	"Timestamp": "11/17/2012 15:41:45",
+	"User": "Cifer",
+	"OldValue": 10000,
+	"NewValue": 89000,
+	"Year": 2015,
+	"Client": "Sample1",
+	"Account": "PRC",
+	"TextComment": "Men of Gondor! Men of Rohan! My brothers!",
+	"Attachments": "North2006.pdf",
+	"CurrentNode": 0,
+	"CriticalNode": 1,
+	"Unsaved": 0,
+	"children":
+		[
+			{
+				
+					"actionName": "changeGoal",
+					"Timestamp": "11/17/2012 15:42:53",
+					"User": "Cifer",
+					"OldValue": 9000,
+					"NewValue": 88000,
+					"Year": 2015,
+					"Client": "Sample1",
+					"Account": "PRC",
+					"TextComment": "The day will come when the courage of men fails and death will break all bonds of fellowship",
+					"Attachments": "IsenbergEtAl2008.pdf",
+					"CurrentNode": 0,
+					"CriticalNode": 1,
+					"Unsaved": 0,
+					"children" : [
+						{
+							"actionName": "changeClient",
+							"Timestamp": "11/17/2012 21:26:10",
+							"User": "Cifer",
+							"OldValue": "Sample1",
+							"NewValue": "Sample4",
+							"Year": "unused",
+							"Client": "unused",
+							"Account": "unused",
+							"TextComment": "unused",
+							"Attachments": "unused",
+							"CurrentNode": 0,
+							"CriticalNode": 1,
+							"Unsaved": 0,
+							"children" : [
+								{
+									"actionName": "changeAccount",
+									"Timestamp": "11/17/2012 21:26:14",
+									"User": "Cifer",
+									"OldValue": "S4-RRSP",
+									"NewValue": "S4-NR",
+									"Year": "unused",
+									"Client": "unused",
+									"Account": "unused",
+									"TextComment": "unused",
+									"Attachments": "unused",
+									"CurrentNode": 0,
+									"CriticalNode": 1,
+									"Unsaved": 0,
+									"children": [
+										{
+											"actionName": "zoomIn",
+											"Timestamp": "11/17/2012 21:26:20",
+											"User": "Cifer",
+											"OldValue": "all clients",
+											"NewValue": "one client",
+											"Year": "unused",
+											"Client": "unused",
+											"Account": "unused",
+											"TextComment": "unused",
+											"Attachments": "unused",
+											"CurrentNode": 0,
+											"CriticalNode": 1,
+											"Unsaved": 1,
+											"children": [
+												{
+													"actionName": "zoomIn",
+													"Timestamp": "11/17/2012 21:26:22",
+													"User": "Cifer",
+													"OldValue": "one client",
+													"NewValue": "one account",
+													"Year": "unused",
+													"Client": "unused",
+													"Account": "unused",
+													"TextComment": "unused",
+													"Attachments": "unused",
+													"CurrentNode": 0,
+													"CriticalNode": 1,
+													"Unsaved": 1,
+													"children": [ 
+														{
+															"actionName": "changeIncome",
+															"Timestamp": "11/17/2012 21:26:31",
+															"User": "Cifer",
+															"OldValue": 118000,
+															"NewValue": 80000,
+															"Year": 2012,
+															"Client": "Sample4",
+															"Account": "S4-NR",
+															"TextComment": "unused",
+															"Attachments": "unused",
+															"CurrentNode": 0,
+															"CriticalNode": 1,
+															"Unsaved": 1,
+															"children": [ 
+																{
+																	"actionName": "changeGoal",
+																	"Timestamp": "11/17/2012 21:26:40",
+																	"User": "Cifer",
+																	"OldValue": 113000,
+																	"NewValue": 75000,
+																	"Year": 2012,
+																	"Client": "Sample4",
+																	"Account": "S4-NR",
+																	"TextComment": "unused",
+																	"Attachments": "unused",
+																	"CurrentNode": 1,
+																	"CriticalNode": 1,
+																	"Unsaved": 1
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]	
+								}
+							]	
+						}
+					]
+				},
+				{
+						"actionName": "changeClient",
+						"Timestamp": "11/17/2012 21:18:45",
+						"User": "Cifer",
+						"OldValue": "Sample1",
+						"NewValue": "Sample2",
+						"Year": "unused",
+						"Client": "unused",
+						"Account": "unused",
+						"TextComment": "unused",
+						"Attachments": "unused",
+						"CurrentNode": 0,
+						"CriticalNode": 0,
+						"Unsaved": 0,
+						"children": [ 
+							{
+								
+									"actionName": "changeIncome",
+									"Timestamp": "11/17/2012 21:18:55",
+									"User": "Cifer",
+									"OldValue": 80000,
+									"NewValue": 20000,
+									"Year": 2017,
+									"Client": "Sample2",
+									"Account": "indiv-acct-rrsp",
+									"TextComment": "today, we code!",
+									"Attachments": "unused",
+									"CurrentNode": 0,
+									"CriticalNode": 0,
+									"Unsaved": 1,
+									"children": [ 
+							{
+								
+									"actionName": "changeIncome",
+									"Timestamp": "11/17/2012 21:19:03",
+									"User": "Cifer",
+									"OldValue": 20000,
+									"NewValue": 45000,
+									"Year": 2017,
+									"Client": "Sample2",
+									"Account": "indiv-acct-rrsp",
+									"TextComment": "unused",
+									"Attachments": "unused",
+									"CurrentNode": 0,
+									"CriticalNode": 0,
+									"Unsaved": 1,
+									"children": [ 
+							{
+								
+									"actionName": "changeClient",
+									"Timestamp": "11/17/2012 21:19:10",
+									"User": "Cifer",
+									"OldValue": "Sample2",
+									"NewValue": "Sample1",
+									"Year": "unused",
+									"Client": "unused",
+									"Account": "unused",
+									"TextComment": "unused",
+									"Attachments": "unused",
+									"CurrentNode": 0,
+									"CriticalNode": 0,
+									"Unsaved": 1,
+									"children": [
+										{
+											"actionName": "zoomIn",
+											"Timestamp": "11/17/2012 21:25:36",
+											"User": "Cifer",
+											"OldValue": "all clients",
+											"NewValue": "one client",
+											"Year": "unused",
+											"Client": "unused",
+											"Account": "unused",
+											"TextComment": "unused",
+											"Attachments": "unused",
+											"CurrentNode": 0,
+											"CriticalNode": 0,
+											"Unsaved": 1,
+											"children": [
+												{
+													"actionName": "zoomIn",
+													"Timestamp": "11/17/2012 21:25:38",
+													"User": "Cifer",
+													"OldValue": "one client",
+													"NewValue": "one account",
+													"Year": "unused",
+													"Client": "unused",
+													"Account": "unused",
+													"TextComment": "unused",
+													"Attachments": "unused",
+													"CurrentNode": 0,
+													"CriticalNode": 0,
+													"Unsaved": 1
+												}
+											]											
+										}
+									]
+					
+							}
+						]
+					
+							}
+						]
+					
+							}
+						]	
+				}
+		]
+}

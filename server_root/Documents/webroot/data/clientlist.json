@@ -1,0 +1,30 @@
+{
+	"root":{
+		"Sample1":{
+			"PRC": 0,
+			"R-RRSP": 0,
+			"J-RRSP": 0,
+			"J-SP-RSP": 0
+		},
+		"Sample2":{
+			"indiv-acct-rrsp": 0,
+			"indiv-acct-nr": 0
+		},
+		"Sample3":{
+			"David_LIRAs": 0,
+			"David_RRSP": 0,
+			"Cindy_RRSP": 0,
+			"Cindy-SP-RSP": 0
+		},
+		"FIVA_Client9":{
+			"NR-9": 0,
+			"RRIF-9": 0
+		},
+		"Sample4":{
+			"S4-RRSP": 0,
+			"S4-TFSA": 0,
+			"S4-NR": 0,
+			"S4-SP-RSP": 0
+		}
+	}
+}

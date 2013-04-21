@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import url("fiva09.css");
+		</style>
+    </head>
+    <body>
+	
+	
+<script type="text/javascript" src="lib/d3.js"></script>
+<script type="text/javascript" src="lib/d3.csv.js"></script>
+<script type="text/javascript" src="lib/d3.csv.extended.js"></script>
+<script type="text/javascript" src="lib/myOther.js"></script>
+
+	
+<table><thead></thead><tbody></tbody></table>
+
+
+<script type="text/javascript">
+
+var i = 0; 
+var yearIndex = 0;
+var columnIndex = 0;
+var numColumn = 2;
+var cellName;
+
+var isOnChange = true;
+function changeTableField(name, value) {
+	isOnChange = false;
+	tableFieldOnChange(name, value);
+	isOnChange = true;
+}
+
+function tableFieldOnChange(name, value) {
+
+	var tempElement = document.getElementById(name.toString());
+
+	if (tempElement == null) { return; }
+
+	changeColor (tempElement);
+	
+	if (typeof value !== 'undefined') {
+		tempElement.value = value;
+	}
+
+	if (isNaN(tempElement.value) || (parseInt(tempElement.value) < 0)) {
+		
+		alert("This value must be a number; please also don't put currency symbols");
+		
+	} else {
+	
+		// update the data
+		var fieldType = name.substr(0, name.indexOf("%%"));
+		var year = name.substr(fieldType.length + 2);
+		
+		if (fieldType == "price") {
+			parent.setPrice (parseInt(year), tempElement.value);
+
+			if (isOnChange) {
+				parent.insertChangePriceAction(year, "unused", tempElement.value); 
+			}
+		} else if (fieldType == "yield") {
+			parent.setYield (parseInt(year), tempElement.value);
+
+			if (isOnChange) {
+				parent.insertChangeYieldAction(year, "unused", tempElement.value); 
+			}
+		}
+		
+		if (parent.document.getElementById("doesAutoUpdate").checked) {
+			// update the bulletChart
+			parent.gBulletChartPageCompleted = false;
+			var bulletChart = parent.document.getElementById('Cifer3');
+			bulletChart.contentWindow.transition();
+			
+			// update the treeMap
+			parent.treemapReload();
+		}
+	}
+}
+
+function changeColor(tempElement)
+{
+	tempElement.style.backgroundColor="#EE0000";
+	tempElement.style.color="#CCCCCC";
+  
+}
+
+function stringCompare(a,b) {a = a.toLowerCase(); b = b.toLowerCase(); return a > b ? 1 : a == b ? 0 : -1; }
+
+function jsonKeyValueToArray(k, v) {return [k, v];}
+
+function jsonToArray(jsonData) {
+		var j = 0;
+                var ret = new Array();
+                var key;
+                for (key in jsonData) {
+                	
+                	// takes only 2nd and 3rd columns of the price table
+                	if (j < 3 && j > 0) {
+					if (jsonData.hasOwnProperty(key)) {
+                              ret.push(jsonKeyValueToArray(key, jsonData[key]));
+					}
+			}
+			j++;
+		}
+        return ret;
+    }
+
+var headerStr = new Array("&nbsp;&nbsp;price&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;yield&nbsp;&nbsp;");
+
+function reRender() {
+
+	i = 0; 
+	yearIndex = 0;
+	columnIndex = 0;
+	readDataAndRender(parent.gPriceData);
+	parent.gPriceTablePageCompleted = true;
+}
+
+function readDataAndRender (data) {
+
+
+
+var jsonData = data;// eval(csv2json(data));
+// Need code here to display only the subset of years corresponding
+// to the other JSON file (get the starting year when loading the income goal table)
+
+ d3.select("tbody").selectAll("tr").remove();
+
+
+
+// Header
+  var th = d3.select("thead").selectAll("th")
+     .data(headerStr)
+	 .enter().append("th") 
+	 .html(function(d) 
+		{ 
+			return "<span style=\"padding-top:5px; padding-bottom:5px; padding-right:5px; padding-left:5px; font-weight:bold; font-size: 14px;\">"  + d + "</span>"; 
+	 }) ;
+
+
+// Rows
+  var tr = d3.select("tbody").selectAll("tr")
+      .data(jsonData)
+    .enter().append("tr");
+
+// Cells
+
+	
+
+  var td = tr.selectAll("td")
+      .data(function(d) { return jsonToArray(d); })
+    .enter().append("td")
+      .html(function(d) { 
+	  
+	  var returnHTML = "";
+	  
+	  // Must begin by writing some blank rows if accountData starts in a prior year to price data
+	  // note: this case should not happen, the price data should be procured for all the relevant years
+	  if (yearIndex == 0 && (parent.gStartYear < parent.gPriceSheetStartYear)) {
+			
+			for( y = parent.gStartYear; y < parent.gPriceSheetStartYear; y++ ) {
+				returnHTML += ("<input type=\"text\" style=\"width: 50px; margin:2px;\" maxlength=\"8\" disabled=\"true\" value=\"N/A\"" + " />"); 
+			}
+		}
+	  
+	  // Stop drawing price rows after the final year in the account data
+	  if ((yearIndex + parseInt(parent.gPriceSheetStartYear)) > parent.gEndYear) {
+		return "";
+		}
+	  
+	  if (columnIndex == 0) {
+			cellName = "price%%" + (yearIndex + parseInt(parent.gPriceSheetStartYear));
+		} else if (columnIndex == 1) {
+			cellName = "yield%%" + (yearIndex + parseInt(parent.gPriceSheetStartYear));
+			yearIndex++;
+		}
+		columnIndex = (columnIndex + 1) % numColumn;
+		
+	var fieldValue = d[1];
+	
+	
+	
+	  returnHTML += ("<input type=\"text\" style=\"width: 50px;\" maxlength=\"8\" id=\"" + cellName + "\" value=\"" + fieldValue + "\"" + " onChange=\"tableFieldOnChange(\'" + cellName + "\')\" " + " />"); 
+	  
+	  return returnHTML;
+	  }
+	 ) ;
+}
+
+
+if (!parent.gPriceTablePageCompleted) {
+	reRender();
+}
+
+</script>
+
+
+
+    </body>
+</html> 

@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			@import url("fiva09.css");
+		</style>
+    </head>
+    <body>
+	
+	
+<script type="text/javascript" src="lib/d3.js"></script>
+
+	
+<table><thead></thead><tbody></tbody></table>
+
+<link href="bullet_files/bullet.css" rel="stylesheet" type="text/css">
+<script src="bullet_files/d3.js" type="text/javascript"></script>
+<script src="lib/d3.csv.js" type="text/javascript"></script>
+<script src="lib/d3.csv.extended.js" type="text/javascript"></script>
+<script src="lib/myOther.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+// params related to the table or shared starts
+var i = 0; 
+var yearIndex = 0;
+var columnIndex = 0;
+var numColumn = 3;
+var cellName;
+
+var isOnChange = true;
+function changeTableField(name, value) {
+	isOnChange = false;
+	tableFieldOnChange(name, value);
+	isOnChange = true;
+}
+
+function tableFieldOnChange(name, value) {
+
+	var tempElement = document.getElementById(name.toString());
+
+	//newWindowPrint(name.toString() + " not null: " + (tempElement != null));
+
+	if (tempElement == null) { return; }
+
+	// Apparently at the point that on change is called the value
+	// is already "new" so just use "unused" temporarily
+	var oldValue = tempElement.value.toString();
+
+	if (typeof value !== 'undefined') {
+		tempElement.value = value;
+	}
+
+	changeColor (tempElement);
+	
+	if (isNaN(tempElement.value) || (parseInt(tempElement.value) < 0)) {
+		
+		alert("This value must be a number >= 0; please also don't put currency symbols");
+	
+	} else { 
+		// update the data
+		var fieldType = name.substr(0, name.indexOf("%%"));
+		var year = name.substr(fieldType.length + 2);
+		
+		if (fieldType == "goal") {
+			parent.setAccountGoal (parseInt(year), tempElement.value);
+
+			if (isOnChange) {
+
+				parent.insertChangeGoalAction(year, "unused", tempElement.value);
+			}
+
+		} else if (fieldType == "holdings") {
+			parent.setAccountHoldings (parseInt(year), tempElement.value);
+
+			if (isOnChange) {
+
+				parent.insertChangeIncomeAction(year, "unused", tempElement.value);
+			}
+		}
+		
+		if (parent.document.getElementById("doesAutoUpdate").checked) {
+			// update the bulletChart
+			parent.gBulletChartPageCompleted = false;
+			var bulletChart = parent.document.getElementById('Cifer3');
+			bulletChart.contentWindow.transition();
+			
+			// update the treeMap
+			parent.treemapReload();
+		}
+	}
+}
+
+function changeColor(tempElement)
+{
+	tempElement.style.backgroundColor="#EE0000";
+	tempElement.style.color="#CCCCCC";
+  
+}
+
+function stringCompare(a,b) {a = a.toLowerCase(); b = b.toLowerCase(); return a > b ? 1 : a == b ? 0 : -1; }
+
+function jsonKeyValueToArray(k, v) {return [k, v];}
+
+function jsonToArray(jsonData) {
+		var j = 0;
+                var ret = new Array();
+                var key;
+                for (key in jsonData) {
+                	
+                	// takes only the first 3 columns of the table
+                	if (j < 3) {
+					if (jsonData.hasOwnProperty(key)) {
+                              ret.push(jsonKeyValueToArray(key, jsonData[key]));
+					}
+			}
+			j++;
+		}
+        return ret;
+    }
+
+var headerStr=new Array("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", "income goal&nbsp;", "&nbsp;&nbsp;&nbsp;holdings&nbsp;&nbsp;&nbsp;");
+
+// params related to the table or shared ends
+
+function reRender(){
+	i = 0; 
+	yearIndex = 0;
+	columnIndex = 0;
+	
+	renderCurrentAccount();
+	parent.gIncomeGoalTablePageCompleted = true;
+}
+
+function renderCurrentAccount(){
+	
+	//alert(JSON.stringify(parent.gAccountData));
+
+	readDataAndRender(parent.gAccountData);
+}
+
+function readDataAndRender(data) {
+
+
+ // Remove all the old rows in the table, repopulate in the rest of the function
+ d3.select("tbody").selectAll("tr").remove();
+
+
+
+// Header
+  var th = d3.select("thead").selectAll("th")
+     .data(headerStr)
+	 .enter().append("th") 
+	 .html(function(d) {
+			return "<span style=\"padding-top:5px; padding-bottom:5px; padding-right:5px; padding-left:5px; font-weight:bold; font-size: 14px;\">" + d + "</span>";
+		}
+	 ) ;
+
+
+// Rows: this goes through "data", and add a row for each json entry
+  var tr = d3.select("tbody").selectAll("tr")
+      .data(data)
+    .enter().append("tr");
+
+// td = select all "td" from the tr above, which itself is a list. "d" is the individual element in data
+  var td = tr.selectAll("td")
+      .data(function(d) { return jsonToArray(d); })
+    .enter().append("td")
+      .html(function(d) { 
+	  
+	  var fieldValue = d[1];
+			
+	  if (columnIndex == 0) {
+			cellName = "year%%" + (yearIndex + parseInt(parent.gStartYear));
+		} else if (columnIndex == 1) {
+			cellName = "goal%%" + (yearIndex + parseInt(parent.gStartYear));
+			if ((yearIndex + parseInt(parent.gStartYear)) > parent.gEndYear) {
+				fieldValue = "N/A";
+			}	
+		} else if (columnIndex == 2) {
+			cellName = "holdings%%" + (yearIndex + parseInt(parent.gStartYear));
+			if ((yearIndex + parseInt(parent.gStartYear)) > parent.gEndYear) {
+				fieldValue = "N/A";
+			  }
+			yearIndex++;
+		}
+		
+	  columnIndex = (columnIndex + 1) % numColumn;
+	  
+	  return ("<input type=\"text\" style=\"width: 80px;\" maxlength=\"12\" id=\"" + cellName + "\" value=\"" + fieldValue + "\"" + " onChange=\"tableFieldOnChange(\'" + cellName + "\')\" " +
+		(
+			((cellName.indexOf("year") != -1) || fieldValue == "N/A") ? "disabled=\"\"" : "") + " />");
+	  
+	  }) ;
+
+}
+
+if (!parent.gIncomeGoalTablePageCompleted) {
+	reRender();
+}
+
+</script>
+
+
+
+    </body>
+</html> 

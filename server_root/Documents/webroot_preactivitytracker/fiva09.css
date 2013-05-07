@@ -1,0 +1,19 @@
+
+	button.shortbutton
+	{
+		border-style:outset;
+		border-color:#666666;
+		width:75px;
+	}	
+
+	button.longbutton
+	{
+		border-style:outset;
+		border-color:#666666;
+		width:150px;
+	}
+	 
+	 span.size14text {font-weight:normal; font-size: 14px;}
+	 span.size14head {font-weight:normal; font-size: 14px; background-color:#cccccc;}
+	 th.size14head {font-weight:bold; font-size: 14px; background-color:#cccccc;}
+	 tr.size14head {font-weight:bold; font-size: 14px; background-color:#cccccc;}

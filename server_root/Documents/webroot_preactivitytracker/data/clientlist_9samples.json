@@ -1,0 +1,52 @@
+{
+	"root":{
+		"Sample1":{
+			"PRC": 0,
+			"R-RRSP": 0,
+			"J-RRSP": 0,
+			"J-SP-RSP": 0
+		},
+		"Sample2":{
+			"indiv-acct-rrsp": 0,
+			"indiv-acct-nr": 0
+		},
+		"Sample3":{
+			"David_LIRAs": 0,
+			"David_RRSP": 0,
+			"Cindy_RRSP": 0,
+			"Cindy-SP-RSP": 0
+		},
+		"Sample4":{
+			"S4-NR": 0,
+			"S4-RRSP": 0,
+			"S4-TFSA": 0,
+			"S4-SP-RSP": 0
+		} /*,
+		"Sample5":{
+			"S5-acct-rrsp": 0,
+			"S5-acct-nr": 0
+		},
+		"Sample6":{
+			"S6_LIRAs": 0,
+			"S6_RRSP": 0,
+			"S6_TFSA": 0,
+			"S6-SP-RSP": 0
+		},
+		"Sample7":{
+			"S7-NR": 0,
+			"S7-RRSP": 0,
+			"S7-TFSA": 0,
+			"S7-SP-RSP": 0
+		},
+		"Sample8":{
+			"S8-acct-rrsp": 0,
+			"S8-acct-nr": 0
+		},
+		"Sample9":{
+			"S9_LIRAs": 0,
+			"S9_RRSP": 0,
+			"S9_TFSA": 0,
+			"S9-SP-RSP": 0
+		} */
+	}
+}

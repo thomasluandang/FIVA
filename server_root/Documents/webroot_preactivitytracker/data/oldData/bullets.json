@@ -1,0 +1,93 @@
+[
+  {"title":"2011",
+   "ranges":[120000],
+   "measures":[125000],
+   "markers":[130000, 100000]
+  },
+  
+  {"title":"2012",
+   "ranges":[113000],
+   "measures":[118000],
+   "markers":[130000, 113000]
+  },
+  
+  {"title":"2013",
+   "ranges":[86000],
+   "measures":[91000],
+   "markers":[130000, 80000]
+  },
+  
+  {"title":"2014",
+   "ranges":[83000],
+   "measures":[42000],
+   "markers":[130000, 96000]
+  },
+  
+  {"title":"2015",
+   "ranges":[80000],
+   "measures":[62821],
+   "markers":[130000, 85000]
+  },
+  
+  {"title":"2016",
+   "ranges":[30000],
+   "measures":[14114],
+   "markers":[130000, 30000]
+  },
+  
+  {"title":"2017",
+   "ranges":[0],
+   "measures":[20000],
+   "markers":[130000, 0]
+  },
+  
+  
+  {"title":"2018",
+   "ranges":[0],
+   "measures":[19000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2019",
+   "ranges":[0],
+   "measures":[18000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2020",
+   "ranges":[0],
+   "measures":[17000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2021",
+   "ranges":[0],
+   "measures":[16000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2022",
+   "ranges":[0],
+   "measures":[15000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2023",
+   "ranges":[0],
+   "measures":[14000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2024",
+   "ranges":[0],
+   "measures":[13000],
+   "markers":[130000, 0]
+  },
+  
+  {"title":"2025",
+   "ranges":[0],
+   "measures":[12000],
+   "markers":[130000, 0]
+  }
+  
+]
